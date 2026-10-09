@@ -11,16 +11,19 @@ export default function Temporizador(props: TemporizadorProps) {
     return (
         <div className={styles.temporizador}>
             <CountdownCircleTimer
+                key={props.key}
                 duration={props.duracao}
                 size={120}
                 isPlaying
                 onComplete={props.tempoEsgotado}
                 colors={[
-                    ['#BCE596', 0.33],
-                    ['#F7B801', 0.33],
-                    ['#ED827A', 0.33]
-                ]}>
-                {({ remainingTime  })} => remainingTime    
+                    '#BCE596', 
+                    '#F7B801', 
+                    '#ED827A'
+                ]}
+                colorsTime={[props.duracao, props.duracao / 2, 0]}
+            >
+                {({ remainingTime }) => remainingTime}    
             </CountdownCircleTimer>
         </div>
     )
