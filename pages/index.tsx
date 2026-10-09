@@ -40,6 +40,7 @@ export default function Home() {
   }
 
   function idProximaPergunta() {
+    if (!questao) return undefined
     const proximoIndice = idsDasQuestoes.indexOf(questao.id) + 1
     return idsDasQuestoes[proximoIndice]
   }

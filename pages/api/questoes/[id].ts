@@ -1,14 +1,15 @@
-import questoes from '../bancoDeQuestoes'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import questoes from '../../../data/bancoDeQuestoes'
 
-export default (req, res) => {
-  const idSelecionado = +req.query.id
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const idSelecionado = Number(req.query.id)
 
-  const unicaQuestaoOuNada = questoes.filter(questao => questao.id === idSelecionado)
+    const unicaQuestaoOuNada = questoes.filter(questao => questao.id === idSelecionado)
 
-  if(unicaQuestaoOuNada.length === 1) {
-    const questaoSelecionada = unicaQuestaoOuNada[0].embaralharRespostas()
-    res.status(200).json(questaoSelecionada.paraObjeto())
-  } else {
-    res.status(204).send()
-  }
+    if(unicaQuestaoOuNada.length === 1) {
+        const questaoSelecionada = unicaQuestaoOuNada[0].embaralharRespostas()
+        res.status(200).json(questaoSelecionada.paraObjeto()) 
+    } else {
+        res.status(204).send('')
+    }
 }
